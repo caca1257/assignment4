@@ -36,6 +36,24 @@ io.sockets.on('connection',
 		console.log("We have a new client: " + socket.id);
 		
 		///MY SOCKET EVENTS HERE
+
+		socket.on("bluesolid", function(data){
+			console.log("blue solid: " + data.x1 + "," + data.y1);
+			socket.broadcast.emit("bluesolid", data);
+		});
+
+		socket.on("pinksolid", function(data){
+			console.log("pink solid: " + data.x2 + "," + data.y2);
+			socket.broadcast.emit("pinksolid", data);
+		});
+		// socket.on("bluering", function(data){
+		// 	// console.log("pink ring: " + data.x2 + "," + data.y2);
+		// 	socket.broadcast.emit("bluering", data);
+		// });
+		// socket.on("pinkring", function(data){
+		// 	// console.log("pink solid: " + data.x2 + "," + data.y2);
+		// 	socket.broadcast.emit("pinkring", data);
+		// });
 		
 		
 		socket.on('disconnect', function() {

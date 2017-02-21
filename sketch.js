@@ -29,11 +29,14 @@ var pinkScore=0;
 function setup() {
 	createCanvas(600,600);
 
-	x1= random(width-25);
-	y1= random(height-150);
+	// x1= random(width-25);
+	// y1= random(height-150);
 
-	x2= random(width-25);
-	y2= random(height-150);
+	x1= 130;
+	y1= 40;
+
+	x2= 430;
+	y2= 40;
 
 	for (var i=0; i<1; i++) {
     bluecircle.push(new BlueCircle());
@@ -70,21 +73,58 @@ function draw() {
 		y2=mouseY;
 	}
 	
-	firstEllipse();
-	secondEllipse();
+	firstEllipse(x1, y1);
+	secondEllipse(x2, y2);
+
+	sendBlueSolid({
+		"x1": x1,
+		"y1": y1
+	});
+
+	sendPinkSolid({
+		"x2": x2,
+		"y2": y2
+	});
+
+	// sendBlueRing({
+	// 	"bluecircleX": bluecircleX,
+	// 	"bluecircleY": bluecircleY
+	// });
+
+	// sendPinkRing({
+	// 	"pinkcircleX": pinkcircleX,
+	// 	"pinkcircleY": pinkcircleY
+	// });
 
 }
-function firstEllipse(){
+
+function sendBlueSolid(message){
+	socket.emit("bluesolid", message);
+}
+
+function sendPinkSolid(message){
+	socket.emit("pinksolid", message);
+}
+// function sendPinkRing(message){
+// 	socket.emit("pinkring", message);
+// }
+// function sendBlueRing(message){
+// 	socket.emit("bluering", message);
+// }
+
+
+function firstEllipse(theX, theY){
 		noStroke();
 		fill(25, 100, 255);
-		ellipse(x1,y1, r1*2, r1*2);
+		ellipse(theX,theY, r1*2, r1*2);
 }
 
-function secondEllipse(){
+function secondEllipse(theX, theY){
 	noStroke();
 	fill(255, 0, 150);
-	ellipse(x2,y2, r2*2, r2*2);
+	ellipse(theX,theY, r2*2, r2*2);
 }
+
 function BlueCircle() {
 
   bluecircleX = random(width-100);
