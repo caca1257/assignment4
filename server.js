@@ -55,6 +55,28 @@ io.sockets.on('connection',
 		// 	socket.broadcast.emit("pinkring", data);
 		// });
 		
+		//blue hole moved
+		socket.on('bluehole', function(data){
+			console.log(data.x + ", " + data.y);
+
+			socket.broadcast.emit('bluehole', data);
+		});
+
+		socket.on('pinkhole', function(data){
+			console.log(data.x + ", " + data.y);
+
+			socket.broadcast.emit('pinkhole', data);
+		});
+
+		socket.on('blueScore', function(data){
+			socket.broadcast.emit('blueScore', data);
+		});
+
+		socket.on('pinkScore', function(data){
+
+			socket.broadcast.emit('pinkScore', data);
+		});
+		
 		
 		socket.on('disconnect', function() {
 			console.log("Client has disconnected " + socket.id);

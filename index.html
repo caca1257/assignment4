@@ -36,6 +36,32 @@
      y2 = data.y2;
   });
 
+    //blue hole moved, receive this event from server
+  socket.on('bluehole', function(data){
+    console.log(data.x + ", " + data.y);
+
+    //set the bluecircle x and y to the data received from the server
+    bluecircle.x = data.x;
+    bluecircle.y = data.y;
+
+  });
+  socket.on('pinkhole', function(data){
+  console.log(data.x + ", " + data.y);
+
+    //set the pinkcircle x and y to the data received from the server
+    pinkcircle.x = data.x;
+    pinkcircle.y = data.y;
+
+  });
+
+  socket.on('pinkScore', function(data){
+      pinkScore++;
+  });
+
+    socket.on('blueScore', function(data){
+      blueScore++;
+  });
+
   //  socket.on("bluering", function(data){
   //    console.log("blue ring: " + data.bluecircleX + "," + data.bluecircleY);
 
